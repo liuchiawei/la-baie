@@ -1,31 +1,51 @@
 "use client"
 
+import { memo } from "react"
+import Image from "next/image"
 import { motion } from "motion/react"
-import { UtensilsCrossed, Award, Heart, Users } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FadeInView } from "@/components/animations/FadeInView"
+import { messages } from "@/lib/messages"
 
-const features = [
-  {
-    icon: UtensilsCrossed,
-    title: "厳選食材",
-    description: "最高品質の食材を厳選し、季節の味わいをお届けします",
-  },
-  {
-    icon: Award,
-    title: "シェフの技術",
-    description: "経験豊富なシェフによる洗練されたフレンチ料理",
-  },
-  {
-    icon: Heart,
-    title: "心のこもったサービス",
-    description: "お客様ひとりひとりに寄り添う丁寧なサービス",
-  },
-  {
-    icon: Users,
-    title: "特別な時間",
-    description: "大切な人との特別なひとときを演出します",
-  },
-]
+// 特徴データ（画像パスを追加）
+const features = messages.features.items.map((item, index) => ({
+  id: index + 1,
+  title: item.title,
+  description: item.description,
+  image: `/images/${String(index + 18).padStart(2, "0")}.jpg`,
+}))
+
+// カードコンポーネントをメモ化（Vercel best practice: rerender-memo）
+const FeatureCard = memo(({ feature, index }: { feature: typeof features[0]; index: number }) => {
+  return (
+    <FadeInView direction="up" delay={index * 0.1}>
+      <motion.div
+        whileHover={{ y: -8 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <Card className="overflow-hidden h-full">
+          <div className="relative h-64 w-full">
+            <Image
+              src={feature.image}
+              alt={feature.title}
+              fill
+              className="object-cover"
+              loading="lazy"
+            />
+          </div>
+          <CardHeader>
+            <CardTitle className="text-xl">{feature.title}</CardTitle>
+            <CardDescription className="text-base">
+              {feature.description}
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </motion.div>
+    </FadeInView>
+  )
+})
+
+FeatureCard.displayName = "FeatureCard"
 
 export function Features() {
   return (
@@ -33,32 +53,17 @@ export function Features() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeInView direction="up">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">La Baie の特徴</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">{messages.features.title}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              私たちが大切にしていること
+              {messages.features.subtitle}
             </p>
           </div>
         </FadeInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            return (
-              <FadeInView key={feature.title} direction="up" delay={index * 0.1}>
-                <motion.div
-                  className="text-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                    <Icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </motion.div>
-              </FadeInView>
-            )
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {features.map((feature, index) => (
+            <FeatureCard key={feature.id} feature={feature} index={index} />
+          ))}
         </div>
       </div>
     </section>

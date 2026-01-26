@@ -7,25 +7,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FadeInView } from "@/components/animations/FadeInView"
+import { messages } from "@/lib/messages"
 
-// 料理データ
+// 料理データを messages から生成
 const courses = {
-  lunch: [
-    { id: 1, name: "ランチコース A", description: "前菜、メイン、デザート", price: "¥3,500", image: "/images/05.jpg", detail: "季節の前菜、お選びいただけるメイン料理、手作りのデザートが含まれます。" },
-    { id: 2, name: "ランチコース B", description: "前菜、メイン、スープ、デザート", price: "¥4,500", image: "/images/06.jpg", detail: "季節の前菜、スープ、お選びいただけるメイン料理、手作りのデザートが含まれます。" },
-    { id: 3, name: "プレミアムランチ", description: "特別なランチコース", price: "¥6,000", image: "/images/07.jpg", detail: "厳選された食材を使用した特別なランチコースです。" },
-  ],
-  dinner: [
-    { id: 4, name: "ディナーコース A", description: "5品コース", price: "¥8,000", image: "/images/08.jpg", detail: "前菜、スープ、魚料理、肉料理、デザートの5品コースです。" },
-    { id: 5, name: "ディナーコース B", description: "7品コース", price: "¥12,000", image: "/images/09.jpg", detail: "前菜、スープ、魚料理、肉料理、チーズ、デザート、コーヒーの7品コースです。" },
-    { id: 6, name: "シェフおまかせコース", description: "特別なコース", price: "¥15,000", image: "/images/10.jpg", detail: "シェフがその日の食材でお選びする特別なコースです。" },
-  ],
-  aLaCarte: [
-    { id: 7, name: "季節の前菜", description: "旬の食材を使用", price: "¥1,800", image: "/images/11.jpg", detail: "季節の食材を活かした前菜です。" },
-    { id: 8, name: "本日の魚料理", description: "新鮮な魚を使用", price: "¥3,500", image: "/images/12.jpg", detail: "その日仕入れた新鮮な魚を使用した料理です。" },
-    { id: 9, name: "本日の肉料理", description: "厳選された肉を使用", price: "¥4,500", image: "/images/13.jpg", detail: "厳選された肉を使用した料理です。" },
-    { id: 10, name: "手作りデザート", description: "シェフ手作りのスイーツ", price: "¥1,200", image: "/images/14.jpg", detail: "シェフが心を込めて作る手作りのデザートです。" },
-  ],
+  lunch: messages.course.items.lunch.map((item, index) => ({
+    id: index + 1,
+    ...item,
+    image: `/images/${String(index + 5).padStart(2, "0")}.jpg`,
+  })),
+  dinner: messages.course.items.dinner.map((item, index) => ({
+    id: index + 4,
+    ...item,
+    image: `/images/${String(index + 8).padStart(2, "0")}.jpg`,
+  })),
+  aLaCarte: messages.course.items.aLaCarte.map((item, index) => ({
+    id: index + 7,
+    ...item,
+    image: `/images/${String(index + 11).padStart(2, "0")}.jpg`,
+  })),
 }
 
 type Course = typeof courses.lunch[0]
@@ -68,9 +68,9 @@ export function CourseGallery() {
     <div className="py-12">
       <Tabs defaultValue="lunch" className="w-full">
         <TabsList className="grid w-full grid-cols-3 mb-8">
-          <TabsTrigger value="lunch">ランチ</TabsTrigger>
-          <TabsTrigger value="dinner">ディナー</TabsTrigger>
-          <TabsTrigger value="aLaCarte">アラカルト</TabsTrigger>
+          <TabsTrigger value="lunch">{messages.course.tabs.lunch}</TabsTrigger>
+          <TabsTrigger value="dinner">{messages.course.tabs.dinner}</TabsTrigger>
+          <TabsTrigger value="aLaCarte">{messages.course.tabs.aLaCarte}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="lunch">

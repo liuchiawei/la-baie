@@ -6,6 +6,7 @@ import { motion, useScroll, useMotionValueEvent } from "motion/react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { messages } from "@/lib/messages"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -17,12 +18,7 @@ export function Header() {
     setIsScrolled(latest > 50)
   })
 
-  const navItems = [
-    { href: "/", label: "ホーム" },
-    { href: "/course", label: "コース・料理" },
-    { href: "/wedding", label: "ウェディング" },
-    { href: "/about", label: "店舗情報・アクセス" },
-  ]
+  const navItems = messages.navigation
 
   return (
     <motion.header
@@ -45,7 +41,7 @@ export function Header() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              La Baie
+              {messages.restaurant.name}
             </motion.span>
           </Link>
 

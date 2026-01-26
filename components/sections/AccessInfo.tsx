@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FadeInView } from "@/components/animations/FadeInView"
 import { MapPin, Train, Car, Clock, Phone, Mail } from "lucide-react"
 import dynamic from "next/dynamic"
+import { messages } from "@/lib/messages"
 
 // 地図を動的インポート（Vercel best practice: bundle-dynamic-imports）
 const MapComponent = dynamic(() => import("@/components/sections/MapComponent"), {
@@ -22,22 +23,37 @@ export function AccessInfo() {
       <FadeInView direction="up">
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl mb-4">La Baie について</CardTitle>
+            <CardTitle className="text-3xl mb-4">{messages.restaurant.concept.title}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="prose max-w-none">
-              <p className="text-lg leading-relaxed">
-                La Baie は、洗練されたフレンチ料理と上質な空間で
-                お客様に特別なひとときを提供するレストランです。
-              </p>
-              <p className="text-lg leading-relaxed">
-                厳選された食材と経験豊富なシェフの技術により、
-                季節の味わいを最大限に活かした料理をお届けします。
-              </p>
-              <p className="text-lg leading-relaxed">
-                大切な人との特別な時間、ビジネスの場、記念日など、
-                様々なシーンでご利用いただけます。
-              </p>
+              {messages.restaurant.concept.description.map((paragraph, index) => (
+                <p key={index} className="text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </FadeInView>
+
+      {/* 建物について */}
+      <FadeInView direction="up" delay={0.1}>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-3xl mb-4">{messages.building.title}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="prose max-w-none">
+              {messages.building.description.map((paragraph, index) => (
+                <p key={index} className="text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div className="mt-6 p-4 bg-muted rounded-lg">
+              <p className="font-semibold mb-2">{messages.building.colonialStyle.title}</p>
+              <p className="text-muted-foreground">{messages.building.colonialStyle.description}</p>
             </div>
           </CardContent>
         </Card>
@@ -46,7 +62,7 @@ export function AccessInfo() {
       {/* 店舗写真 */}
       <FadeInView direction="up" delay={0.2}>
         <div>
-          <h3 className="text-3xl font-bold mb-6">店内の様子</h3>
+          <h3 className="text-3xl font-bold mb-6">{messages.pages.about.interiorTitle}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[22, 23].map((imgNum, index) => (
               <motion.div
@@ -78,7 +94,7 @@ export function AccessInfo() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <MapPin className="h-5 w-5" />
-                <span>基本情報</span>
+                <span>{messages.pages.about.basicInfoTitle}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -86,37 +102,37 @@ export function AccessInfo() {
                 <div className="flex items-start space-x-2">
                   <MapPin className="h-5 w-5 mt-0.5 shrink-0 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">住所</p>
+                    <p className="font-medium">{messages.pages.about.addressLabel}</p>
                     <p className="text-muted-foreground">
-                      〒000-0000<br />
-                      東京都渋谷区○○○1-2-3<br />
-                      ○○ビル 2F
+                      {messages.info.address.postal}<br />
+                      {messages.info.address.full}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-5 w-5 shrink-0 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">電話番号</p>
-                    <p className="text-muted-foreground">03-1234-5678</p>
+                    <p className="font-medium">{messages.pages.about.phoneLabel}</p>
+                    <p className="text-muted-foreground">{messages.info.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-5 w-5 shrink-0 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">メール</p>
-                    <p className="text-muted-foreground">info@la-baie.com</p>
+                    <p className="font-medium">{messages.pages.about.emailLabel}</p>
+                    <p className="text-muted-foreground">{messages.info.email}</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
                   <Clock className="h-5 w-5 mt-0.5 shrink-0 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">営業時間</p>
+                    <p className="font-medium">{messages.pages.about.hoursLabel}</p>
                     <p className="text-muted-foreground">
-                      ランチ: 11:30 - 15:00 (L.O. 14:00)<br />
-                      ディナー: 17:30 - 22:00 (L.O. 21:00)
+                      ランチ: {messages.info.hours.lunch}<br />
+                      ディナー: {messages.info.hours.dinner}
                     </p>
-                    <p className="text-muted-foreground mt-1">定休日: 月曜日</p>
+                    <p className="text-muted-foreground mt-1">{messages.pages.about.closedLabel}: {messages.info.closed}</p>
+                    <p className="text-muted-foreground mt-1">{messages.info.parking.display}</p>
                   </div>
                 </div>
               </div>
@@ -126,27 +142,26 @@ export function AccessInfo() {
           {/* 交通アクセス */}
           <Card>
             <CardHeader>
-              <CardTitle>交通アクセス</CardTitle>
+              <CardTitle>{messages.pages.about.accessTitle}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div className="flex items-start space-x-2">
                   <Train className="h-5 w-5 mt-0.5 shrink-0 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">電車でお越しの場合</p>
+                    <p className="font-medium">{messages.pages.about.trainLabel}</p>
                     <p className="text-muted-foreground">
-                      JR山手線「渋谷駅」より徒歩5分<br />
-                      東京メトロ「渋谷駅」より徒歩3分
+                      {messages.info.access.train}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
                   <Car className="h-5 w-5 mt-0.5 shrink-0 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">お車でお越しの場合</p>
+                    <p className="font-medium">{messages.pages.about.carLabel}</p>
                     <p className="text-muted-foreground">
-                      首都高速3号渋谷線「渋谷IC」より5分<br />
-                      駐車場: 近隣にコインパーキングあり（要予約）
+                      {messages.info.access.car}<br />
+                      駐車場: {messages.info.parking.display}
                     </p>
                   </div>
                 </div>
@@ -160,7 +175,7 @@ export function AccessInfo() {
       <FadeInView direction="up" delay={0.6}>
         <Card>
           <CardHeader>
-            <CardTitle>地図</CardTitle>
+            <CardTitle>{messages.pages.about.mapTitle}</CardTitle>
           </CardHeader>
           <CardContent>
             <MapComponent />

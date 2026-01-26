@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { FadeInView } from "@/components/animations/FadeInView"
+import { messages } from "@/lib/messages"
 
 export function Hero() {
   return (
@@ -36,20 +37,18 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            La Baie
+            {messages.restaurant.hero.title}
           </motion.h1>
         </FadeInView>
 
         <FadeInView direction="up" delay={0.4}>
           <motion.p
-            className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto whitespace-pre-line"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            洗練されたフレンチ料理と上質な空間で
-            <br />
-            特別なひとときをお過ごしください
+            {messages.restaurant.hero.subtitle}
           </motion.p>
         </FadeInView>
 
@@ -64,7 +63,7 @@ export function Hero() {
               size="lg"
               className="bg-white text-foreground hover:bg-white/90 text-lg px-8 py-6"
             >
-              <Link href="/course">メニューを見る</Link>
+              <Link href="/course">{messages.restaurant.hero.ctaButton}</Link>
             </Button>
           </motion.div>
         </FadeInView>

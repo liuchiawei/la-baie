@@ -6,61 +6,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
 import { FadeInView } from "@/components/animations/FadeInView"
+import { messages } from "@/lib/messages"
 
 // ウェディングプランデータ
-const weddingPlans = [
-  {
-    id: 1,
-    name: "ベーシックプラン",
-    price: "¥50,000〜",
-    capacity: "20〜40名",
-    includes: [
-      "ウェディングケーキ",
-      "シャンパンサービス",
-      "フラワーアレンジメント",
-      "写真撮影スペース",
-      "専属スタッフ",
-    ],
-    description: "シンプルで上品なウェディングプランです。",
-    image: "/images/15.jpg",
-  },
-  {
-    id: 2,
-    name: "スタンダードプラン",
-    price: "¥80,000〜",
-    capacity: "30〜60名",
-    includes: [
-      "ウェディングケーキ",
-      "シャンパンサービス",
-      "フラワーアレンジメント",
-      "写真撮影スペース",
-      "専属スタッフ",
-      "音楽演奏",
-      "ドレスチェンジ対応",
-    ],
-    description: "充実した内容のスタンダードプランです。",
-    image: "/images/16.jpg",
-  },
-  {
-    id: 3,
-    name: "プレミアムプラン",
-    price: "¥120,000〜",
-    capacity: "40〜80名",
-    includes: [
-      "ウェディングケーキ",
-      "シャンパンサービス",
-      "フラワーアレンジメント",
-      "写真撮影スペース",
-      "専属スタッフ",
-      "音楽演奏",
-      "ドレスチェンジ対応",
-      "ビデオ撮影",
-      "二次会対応",
-    ],
-    description: "最高級のサービスを提供するプレミアムプランです。",
-    image: "/images/17.jpg",
-  },
-]
+const weddingPlans = messages.wedding.plans.map((plan, index) => ({
+  id: index + 1,
+  name: plan.name,
+  price: plan.price,
+  capacity: plan.capacity,
+  includes: plan.includes,
+  description: plan.description,
+  image: `/images/${String(index + 15).padStart(2, "0")}.jpg`,
+}))
 
 export function WeddingPlans() {
   return (
@@ -94,7 +51,7 @@ export function WeddingPlans() {
                   </div>
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value={`plan-${plan.id}`}>
-                      <AccordionTrigger>含まれるサービス</AccordionTrigger>
+                      <AccordionTrigger>{messages.wedding.servicesTitle}</AccordionTrigger>
                       <AccordionContent>
                         <ul className="space-y-2">
                           {plan.includes.map((item, idx) => (
@@ -108,7 +65,7 @@ export function WeddingPlans() {
                     </AccordionItem>
                   </Accordion>
                   <Button className="w-full" size="lg">
-                    お問い合わせ
+                    {messages.reservation.contactButton}
                   </Button>
                 </CardContent>
               </Card>
@@ -120,7 +77,7 @@ export function WeddingPlans() {
       {/* 会場写真 */}
       <FadeInView direction="up">
         <div>
-          <h3 className="text-3xl font-bold mb-6 text-center">会場の様子</h3>
+          <h3 className="text-3xl font-bold mb-6 text-center">{messages.wedding.venueTitle}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[18, 19, 20, 21].map((imgNum, index) => (
               <motion.div
