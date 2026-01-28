@@ -24,7 +24,7 @@ export default function Home() {
       
       {/* CTA Section */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 lg:px-8">
           <FadeInView direction="up">
             <div className="text-center max-w-2xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 whitespace-pre-line">
@@ -33,7 +33,7 @@ export default function Home() {
               <p className="text-lg text-muted-foreground mb-8">
                 {messages.pages.home.cta.description}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex lg:flex-col gap-4 justify-center">
                 <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/course">{messages.pages.home.cta.menuButton}</Link>
                 </Button>

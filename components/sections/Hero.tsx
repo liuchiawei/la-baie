@@ -29,7 +29,7 @@ export function Hero() {
       </motion.div>
 
       {/* コンテンツ */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
         <FadeInView direction="up" delay={0.2}>
           <motion.h1
             className="text-5xl md:text-7xl font-bold text-white mb-6"

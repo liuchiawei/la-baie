@@ -47,7 +47,7 @@ SceneCard.displayName = "SceneCard"
 export function Scenes() {
   return (
     <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 lg:px-8">
         <FadeInView direction="up">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">{messages.scenes.title}</h2>
