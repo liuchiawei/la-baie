@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "motion/react"
-import { Button } from "@/components/ui/button"
-import { FadeInView } from "@/components/animations/FadeInView"
-import { messages } from "@/lib/messages"
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+import { FadeInView } from "@/components/animations/FadeInView";
+import { messages } from "@/lib/messages";
 
 export function Hero() {
   return (
@@ -18,7 +18,7 @@ export function Hero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
         <Image
-          src="/images/01.jpg"
+          src="/images/39.jpg"
           alt="La Baie レストラン"
           fill
           className="object-cover"
@@ -84,5 +84,5 @@ export function Hero() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
