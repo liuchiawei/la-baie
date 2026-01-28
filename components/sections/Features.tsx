@@ -49,7 +49,7 @@ FeatureCard.displayName = "FeatureCard"
 
 export function Features() {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20">
       <div className="container mx-auto px-4 lg:px-0">
         <FadeInView direction="up">
           <div className="text-center mb-12">

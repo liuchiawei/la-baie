@@ -17,7 +17,8 @@ export const messages = {
     },
     hero: {
       title: "La Baie",
-      subtitle: "洗練されたフレンチ料理と上質な空間で\n特別なひとときをお過ごしください",
+      subtitle:
+        "洗練されたフレンチ料理と上質な空間で\n特別なひとときをお過ごしください",
       ctaButton: "メニューを見る",
     },
   },
@@ -49,12 +50,14 @@ export const messages = {
     items: [
       {
         title: "ビジネスや接待で",
-        description: "重要なお客様をお招きする際にご利用いただきたいと思います。",
+        description:
+          "重要なお客様をお招きする際にご利用いただきたいと思います。",
         icon: "business",
       },
       {
         title: "家族のお祝い事",
-        description: "還暦・入学・就職などの様々な家族でのお祝い事に利用いただきたいと思います。",
+        description:
+          "還暦・入学・就職などの様々な家族でのお祝い事に利用いただきたいと思います。",
         icon: "celebration",
       },
       {
@@ -64,7 +67,8 @@ export const messages = {
       },
       {
         title: "記念日に",
-        description: "結婚記念日初め様々な記念日ごとにご利用いただきたいと思います。（オリジナルプランも承ります）",
+        description:
+          "結婚記念日初め様々な記念日ごとにご利用いただきたいと思います。（オリジナルプランも承ります）",
         icon: "anniversary",
       },
       {
@@ -179,7 +183,8 @@ export const messages = {
   // ウェディングプラン
   wedding: {
     title: "ウェディング",
-    subtitle: "特別な一日を、洗練された空間で\nお二人の思い出に残るウェディングをサポートします",
+    subtitle:
+      "特別な一日を、洗練された空間で\nお二人の思い出に残るウェディングをサポートします",
     plans: [
       {
         name: "ベーシックプラン",
@@ -234,7 +239,8 @@ export const messages = {
   // コース・料理
   course: {
     title: "コース・料理",
-    subtitle: "厳選された食材と洗練された技術でお届けする\n特別なコース料理とアラカルトメニュー",
+    subtitle:
+      "厳選された食材と洗練された技術でお届けする\n特別なコース料理とアラカルトメニュー",
     tabs: {
       lunch: "ランチ",
       dinner: "ディナー",
@@ -246,22 +252,24 @@ export const messages = {
           name: "ランチコース A",
           description: "前菜、メイン、デザート",
           price: "¥3,500",
-          detail: "季節の前菜、お選びいただけるメイン料理、手作りのデザートが含まれます。",
-          image: "/images/1.jpg",
+          detail:
+            "季節の前菜、お選びいただけるメイン料理、手作りのデザートが含まれます。",
+          image: "/images/01.jpg",
         },
         {
           name: "ランチコース B",
           description: "前菜、メイン、スープ、デザート",
           price: "¥4,500",
-          detail: "季節の前菜、スープ、お選びいただけるメイン料理、手作りのデザートが含まれます。",
-          image: "/images/2.jpg",
+          detail:
+            "季節の前菜、スープ、お選びいただけるメイン料理、手作りのデザートが含まれます。",
+          image: "/images/02.jpg",
         },
         {
           name: "プレミアムランチ",
           description: "特別なランチコース",
           price: "¥6,000",
           detail: "厳選された食材を使用した特別なランチコースです。",
-          image: "/images/3.jpg",
+          image: "/images/03.jpg",
         },
       ],
       dinner: [
@@ -270,21 +278,22 @@ export const messages = {
           description: "5品コース",
           price: "¥8,000",
           detail: "前菜、スープ、魚料理、肉料理、デザートの5品コースです。",
-          image: "/images/4.jpg",
+          image: "/images/04.jpg",
         },
         {
           name: "ディナーコース B",
           description: "7品コース",
           price: "¥12,000",
-          detail: "前菜、スープ、魚料理、肉料理、チーズ、デザート、コーヒーの7品コースです。",
-          image: "/images/5.jpg",
+          detail:
+            "前菜、スープ、魚料理、肉料理、チーズ、デザート、コーヒーの7品コースです。",
+          image: "/images/05.jpg",
         },
         {
           name: "シェフおまかせコース",
           description: "特別なコース",
           price: "¥15,000",
           detail: "シェフがその日の食材でお選びする特別なコースです。",
-          image: "/images/6.jpg",
+          image: "/images/06.jpg",
         },
       ],
       aLaCarte: [
@@ -293,21 +302,21 @@ export const messages = {
           description: "旬の食材を使用",
           price: "¥1,800",
           detail: "季節の食材を活かした前菜です。",
-          image: "/images/7.jpg",
+          image: "/images/07.jpg",
         },
         {
           name: "本日の魚料理",
           description: "新鮮な魚を使用",
           price: "¥3,500",
           detail: "その日仕入れた新鮮な魚を使用した料理です。",
-          image: "/images/8.jpg",
+          image: "/images/08.jpg",
         },
         {
           name: "本日の肉料理",
           description: "厳選された肉を使用",
           price: "¥4,500",
           detail: "厳選された肉を使用した料理です。",
-          image: "/images/9.jpg",
+          image: "/images/09.jpg",
         },
         {
           name: "手作りデザート",
@@ -336,13 +345,16 @@ export const messages = {
       title: "コース・料理 | La Baie",
       description: "La Baie のコース料理とアラカルトメニューをご紹介します。",
       heading: "コース・料理",
-      subtitle: "厳選された食材と洗練された技術でお届けする\n特別なコース料理とアラカルトメニュー",
+      subtitle:
+        "厳選された食材と洗練された技術でお届けする\n特別なコース料理とアラカルトメニュー",
     },
     wedding: {
       title: "ウェディング | La Baie",
-      description: "La Baie で特別なウェディングを。各種プランをご用意しております。",
+      description:
+        "La Baie で特別なウェディングを。各種プランをご用意しております。",
       heading: "ウェディング",
-      subtitle: "特別な一日を、洗練された空間で\nお二人の思い出に残るウェディングをサポートします",
+      subtitle:
+        "特別な一日を、洗練された空間で\nお二人の思い出に残るウェディングをサポートします",
     },
     about: {
       title: "店舗情報・アクセス | La Baie",
@@ -385,4 +397,4 @@ export const messages = {
     },
     copyright: (year: number) => `© ${year} La Baie. All rights reserved.`,
   },
-} as const
+} as const;

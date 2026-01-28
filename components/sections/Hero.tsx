@@ -61,7 +61,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-foreground hover:bg-white/90 text-lg px-8 py-6"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6"
             >
               <Link href="/course">{messages.restaurant.hero.ctaButton}</Link>
             </Button>
