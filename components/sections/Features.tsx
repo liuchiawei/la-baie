@@ -114,7 +114,7 @@ export function Features() {
               <div className="w-6 h-[1px] bg-gradient-to-l from-transparent to-accent/40" />
             </motion.div>
 
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
+            <p className="text-sm md:text-md lg:text-lg text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
               {messages.features.subtitle}
             </p>
           </div>

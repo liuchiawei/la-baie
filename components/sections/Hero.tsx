@@ -72,7 +72,7 @@ export function Hero() {
 
         <FadeInView direction="up" delay={0.4}>
           <motion.p
-            className="text-xl md:text-2xl lg:text-3xl text-primary/90 mb-12 max-w-3xl mx-auto whitespace-pre-line font-light tracking-wide leading-relaxed"
+            className="text-sm md:text-md lg:text-lg text-primary/90 mb-12 max-w-3xl mx-auto whitespace-pre-line font-light tracking-wide leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 1, ease: [0.22, 1, 0.36, 1] }}

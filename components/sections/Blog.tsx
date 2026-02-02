@@ -126,7 +126,7 @@ export function Blog() {
               <div className="w-10 h-[1px] bg-gradient-to-l from-transparent to-accent/50" />
             </motion.div>
 
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
+            <p className="text-sm md:text-md lg:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
               Les dernières nouvelles de notre maison
             </p>
           </div>
