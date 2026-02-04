@@ -99,8 +99,8 @@ export function Scenes() {
       </div>
 
       {/* Vertical accent lines */}
-      <div className="absolute left-1/4 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
-      <div className="absolute right-1/4 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
+      <div className="absolute left-4 lg:left-10 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
+      <div className="absolute right-4 lg:right-10 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
 
       <div className="container mx-auto px-8 lg:px-16 relative z-10">
         <FadeInView direction="up">

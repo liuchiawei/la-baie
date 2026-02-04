@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
-import { memo } from "react"
-import Image from "next/image"
-import { motion } from "motion/react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FadeInView } from "@/components/animations/FadeInView"
-import { messages } from "@/lib/messages"
+import { motion } from "motion/react";
+import { FadeInView } from "@/components/animations/FadeInView";
+import { ShowcaseCard } from "@/components/cards/ShowcaseCard";
+import { messages } from "@/lib/messages";
 
 // 特徴データ（画像パスを追加）
 const features = messages.features.items.map((item, index) => ({
@@ -13,64 +11,7 @@ const features = messages.features.items.map((item, index) => ({
   title: item.title,
   description: item.description,
   image: `/images/${String(index + 18).padStart(2, "0")}.jpg`,
-}))
-
-// カードコンポーネントをメモ化（Vercel best practice: rerender-memo）
-const FeatureCard = memo(({ feature, index }: { feature: typeof features[0]; index: number }) => {
-  return (
-    <FadeInView direction="up" delay={index * 0.12}>
-      <motion.div
-        className="group relative h-full"
-        whileHover={{ y: -10 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <Card className="overflow-hidden h-full bg-card border-border relative">
-          {/* Top accent border */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-
-          <div className="relative h-72 w-full overflow-hidden">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full h-full"
-            >
-              <Image
-                src={feature.image}
-                alt={feature.title}
-                fill
-                className="object-cover"
-                loading="lazy"
-              />
-            </motion.div>
-
-            {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-
-            {/* Decorative number overlay */}
-            <div className="absolute bottom-4 right-4 text-7xl font-playfair font-bold text-primary/20 group-hover:text-accent/30 transition-colors duration-500 select-none">
-              {String(feature.id).padStart(2, '0')}
-            </div>
-          </div>
-
-          <CardHeader className="px-6 py-6 relative">
-            <CardTitle className="text-xl font-playfair font-semibold mb-3 tracking-tight text-primary group-hover:text-accent transition-colors duration-500">
-              {feature.title}
-            </CardTitle>
-
-            {/* Decorative underline */}
-            <div className="w-0 h-[1px] bg-accent/60 group-hover:w-16 transition-all duration-700 ease-out mb-3" />
-
-            <CardDescription className="text-base leading-relaxed text-muted-foreground">
-              {feature.description}
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </motion.div>
-    </FadeInView>
-  )
-})
-
-FeatureCard.displayName = "FeatureCard"
+}));
 
 export function Features() {
   return (
@@ -106,7 +47,11 @@ export function Features() {
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="flex justify-center items-center gap-2 mb-8"
             >
               <div className="w-6 h-[1px] bg-gradient-to-r from-transparent to-accent/40" />
@@ -122,10 +67,22 @@ export function Features() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {features.map((feature, index) => (
-            <FeatureCard key={feature.id} feature={feature} index={index} />
+            <ShowcaseCard
+              key={feature.id}
+              imageSrc={feature.image}
+              imageAlt={feature.title}
+              title={feature.title}
+              description={feature.description}
+              badgeText={String(feature.id).padStart(2, "0")}
+              revealDelay={index * 0.12}
+              revealDirection="up"
+              hoverOffset={10}
+              imageContainerClassName="h-72"
+              imageSizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+            />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
