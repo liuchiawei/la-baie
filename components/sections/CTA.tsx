@@ -10,10 +10,10 @@ import Link from "next/link";
 
 export function CTA() {
   return (
-    <section className="relative py-32 flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background image with zoom-out enter animation */}
       <motion.div
-        className="absolute inset-0 z-0 bg-[image:url('/images/47.jpg')] bg-cover bg-center after:content-[''] after:absolute after:inset-0 after:bg-linear-to-b after:from-black/50 after:to-transparent"
+        className="absolute inset-0 z-0 bg-[image:url('/images/47.jpg')] bg-cover bg-center after:content-[''] after:absolute after:inset-0 after:bg-linear-to-b after:from-background after:to-transparent"
         initial={{ scale: 1.25 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -57,7 +57,7 @@ export function CTA() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-2 border-primary/40 text-primary hover:bg-primary/5 hover:border-primary text-lg w-full py-6 transition-all duration-500 tracking-wider font-medium bg-transparent backdrop-blur-xs hover:backdrop-blur-sm"
+                className="border-2 border-primary/40 text-primary hover:text-primary hover:bg-primary/5 hover:border-primary text-lg w-full py-6 transition-all duration-500 tracking-wider font-medium bg-transparent backdrop-blur-xs hover:backdrop-blur-sm"
               >
                 <Link href="/about">
                   <span className="relative z-10">
