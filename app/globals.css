@@ -37,13 +37,6 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-xl: 0;
-  --radius-2xl: 0;
-  --radius-3xl: 0;
-  --radius-4xl: 0;
 }
 
 :root {
@@ -93,8 +86,6 @@
   --sidebar-accent-foreground: oklch(0.95 0.008 75);
   --sidebar-border: oklch(0.3 0.01 270 / 30%);
   --sidebar-ring: oklch(0.75 0.12 85 / 50%);
-
-  --radius: 0px;
 }
 
 .dark {
