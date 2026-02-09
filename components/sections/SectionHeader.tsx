@@ -35,21 +35,7 @@ export function SectionHeader({
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-semibold tracking-tight text-primary mb-6">
           {title}
         </h2>
-
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.8, ease: EASING }}
-          className="flex justify-center items-center gap-2 mb-6 md:mb-8"
-        >
-          <div className="w-8 md:w-10 h-[1px] bg-gradient-to-r from-transparent to-accent/50" />
-          <div className="w-1 h-1 bg-accent/50 rounded-full" />
-          <div className="w-1 h-1 bg-accent/50 rounded-full" />
-          <div className="w-1 h-1 bg-accent/50 rounded-full" />
-          <div className="w-8 md:w-10 h-[1px] bg-gradient-to-l from-transparent to-accent/50" />
-        </motion.div>
-
+        {/* 副標題 */}
         {subtitle && (
           <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
             {subtitle}

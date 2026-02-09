@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
-import { FadeInView } from "@/components/animations/FadeInView";
 import { ShowcaseCard } from "@/components/cards/ShowcaseCard";
+import { SectionHeader } from "@/components/sections/SectionHeader";
 import { messages } from "@/lib/messages";
 
 // 特徴データ（画像パスを追加）
@@ -23,47 +22,11 @@ export function Features() {
       <div className="absolute bottom-0 right-0 w-32 h-32 border-r border-b border-accent/20" />
 
       <div className="container mx-auto px-8 lg:px-16">
-        <FadeInView direction="up">
-          <div className="text-center mb-20">
-            {/* Top decorative element */}
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center items-center gap-4 mb-8"
-            >
-              <div className="w-20 h-[1px] bg-gradient-to-r from-transparent to-accent/60" />
-              <div className="w-2 h-2 bg-accent/60 rotate-45" />
-              <div className="w-20 h-[1px] bg-gradient-to-l from-transparent to-accent/60" />
-            </motion.div>
-
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-semibold mb-6 tracking-tight text-primary">
-              {messages.features.title}
-            </h2>
-
-            {/* Subtitle underline */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="flex justify-center items-center gap-2 mb-8"
-            >
-              <div className="w-6 h-[1px] bg-gradient-to-r from-transparent to-accent/40" />
-              <div className="w-1 h-1 bg-accent/40 rounded-full" />
-              <div className="w-6 h-[1px] bg-gradient-to-l from-transparent to-accent/40" />
-            </motion.div>
-
-            <p className="text-sm md:text-md lg:text-lg text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
-              {messages.features.subtitle}
-            </p>
-          </div>
-        </FadeInView>
+        <SectionHeader
+          title={messages.features.title}
+          subtitle={messages.features.subtitle}
+          className="mb-20"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {features.map((feature, index) => (
