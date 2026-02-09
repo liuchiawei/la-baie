@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Cormorant_Garamond } from "next/font/google";
+import { Noto_Serif_JP, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const notoSerifJP = Noto_Serif_JP({
+  variable: "--font-noto-serif-jp",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const cormorant = Cormorant_Garamond({
@@ -35,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${playfair.variable} ${cormorant.variable} antialiased`}
+        className={`${notoSerifJP.variable} ${cormorant.variable} antialiased`}
       >
         <Header />
         {children}

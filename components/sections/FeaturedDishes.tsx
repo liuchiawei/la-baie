@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FadeInView } from "@/components/animations/FadeInView";
+import { SectionHeader } from "@/components/sections/SectionHeader";
 import { messages } from "@/lib/messages";
 
 // 推薦料理データ
@@ -63,7 +64,7 @@ const DishCard = ({
           <CardHeader className="px-6 py-8">
             {/* Decorative number */}
             <div className="absolute top-72 right-6 text-6xl font-playfair font-bold text-accent/10 select-none">
-              {String(dish.id).padStart(2, '0')}
+              {String(dish.id).padStart(2, "0")}
             </div>
 
             <CardTitle className="text-2xl font-playfair font-semibold mb-4 tracking-tight relative">
@@ -84,7 +85,9 @@ const DishCard = ({
                 className="w-full border border-primary/30 hover:border-primary text-primary hover:bg-primary/5 transition-all duration-500 py-6 tracking-wider"
               >
                 <Link href={dish.href}>
-                  <span className="relative z-10">{messages.featuredDishes.viewDetails}</span>
+                  <span className="relative z-10">
+                    {messages.featuredDishes.viewDetails}
+                  </span>
                 </Link>
               </Button>
               {/* Bottom accent line */}
@@ -105,43 +108,11 @@ export function FeaturedDishes() {
       <div className="absolute right-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-accent/30 to-transparent" />
 
       <div className="container mx-auto px-8 lg:px-16">
-        <FadeInView direction="up">
-          <div className="text-center mb-20">
-            {/* Top ornament */}
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center items-center gap-3 mb-8"
-            >
-              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-accent" />
-              <div className="w-1.5 h-1.5 bg-accent rotate-45" />
-              <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-accent" />
-            </motion.div>
-
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-semibold mb-6 tracking-tight text-primary">
-              {messages.featuredDishes.title}
-            </h2>
-
-            {/* Decorative underline */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center items-center gap-2 mb-8"
-            >
-              <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-accent/60" />
-              <div className="w-1 h-1 bg-accent/60 rounded-full" />
-              <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-accent/60" />
-            </motion.div>
-
-            <p className="text-sm md:text-md lg:text-lg text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed tracking-wide">
-              {messages.featuredDishes.subtitle}
-            </p>
-          </div>
-        </FadeInView>
+        <SectionHeader
+          title={messages.featuredDishes.title}
+          subtitle={messages.featuredDishes.subtitle}
+          className="mb-20"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {featuredDishes.map((dish, index) => (

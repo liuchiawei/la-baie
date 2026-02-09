@@ -2,143 +2,140 @@
 
 import { memo } from "react";
 import { motion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeInView } from "@/components/animations/FadeInView";
+import { SectionHeader } from "@/components/sections/SectionHeader";
 import { messages } from "@/lib/messages";
 import { Calendar } from "lucide-react";
 
-// ブログエントリーデータ
-const blogEntries = messages.blog.recentEntries.map((entry, index) => ({
-  id: index + 1,
-  date: entry.date,
-  title: entry.title,
-}));
+// Default no-op for optional callback (Vercel best practice: 5.4 memo default non-primitive)
+const NOOP = () => {};
 
-// カードコンポーネントをメモ化（Vercel best practice: rerender-memo）
-const BlogEntryCard = memo(
-  ({ entry, index }: { entry: (typeof blogEntries)[0]; index: number }) => {
-    return (
-      <FadeInView direction="up" delay={index * 0.15}>
-        <motion.div
-          className="group relative h-full"
-          whileHover={{ y: -8 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Card className="h-full bg-card border-border relative overflow-hidden cursor-pointer">
-            {/* Top decorative accent */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent via-accent/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-            {/* Side accent line */}
-            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-
-            {/* Large decorative number in background */}
-            <div className="absolute top-4 right-4 text-8xl font-playfair font-bold text-accent/5 select-none">
-              {String(entry.id).padStart(2, '0')}
-            </div>
-
-            <CardHeader className="px-8 py-8 relative z-10">
-              {/* Date with icon */}
-              <div className="flex items-center gap-3 mb-6 text-muted-foreground group-hover:text-accent transition-colors duration-500">
-                <Calendar className="h-4 w-4" strokeWidth={1.5} />
-                <CardTitle className="text-sm tracking-wider uppercase font-light">
-                  {entry.date}
-                </CardTitle>
-              </div>
-
-              {/* Decorative divider */}
-              <div className="w-0 h-[1px] bg-accent/60 group-hover:w-20 transition-all duration-700 ease-out mb-6" />
-
-              {/* Title */}
-              <CardTitle className="text-2xl md:text-3xl font-playfair font-semibold leading-tight tracking-tight text-primary group-hover:text-accent transition-colors duration-500">
-                {entry.title}
-              </CardTitle>
-
-              {/* Bottom decorative dots */}
-              <div className="flex items-center gap-2 mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="w-1.5 h-1.5 bg-accent/60 rotate-45" />
-                <div className="w-1.5 h-1.5 bg-accent/60 rotate-45" />
-                <div className="w-1.5 h-1.5 bg-accent/60 rotate-45" />
-              </div>
-            </CardHeader>
-
-            {/* Corner decorative elements */}
-            <div className="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </Card>
-        </motion.div>
-      </FadeInView>
-    );
-  },
-);
-
-BlogEntryCard.displayName = "BlogEntryCard";
-
-export function Blog() {
-  return (
-    <section className="relative py-32 bg-gradient-to-b from-background via-card/20 to-background overflow-hidden">
-      {/* Elegant background texture */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(
+// Hoisted static JSX (6.3) — avoid re-creation on every render
+const SECTION_BACKGROUND = (
+  <div className="absolute inset-0 opacity-[0.02]">
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage: `repeating-linear-gradient(
             0deg,
             transparent,
             transparent 2px,
             currentColor 2px,
             currentColor 3px
           )`,
-          backgroundSize: '100% 60px'
-        }} />
-      </div>
+        backgroundSize: "100% 60px",
+      }}
+    />
+  </div>
+);
 
-      {/* Decorative side accents */}
-      <div className="absolute left-0 top-1/3 bottom-1/3 w-[1px] bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
-      <div className="absolute right-0 top-1/3 bottom-1/3 w-[1px] bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
+const SIDE_ACCENT_LEFT = (
+  <div className="absolute left-0 top-1/3 bottom-1/3 w-[1px] bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
+);
+
+const SIDE_ACCENT_RIGHT = (
+  <div className="absolute right-0 top-1/3 bottom-1/3 w-[1px] bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
+);
+
+const BOTTOM_ORNAMENT_CONTENT = (
+  <>
+    <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-accent/40" />
+    <div className="w-1 h-1 bg-accent/40 rotate-45" />
+    <div className="w-1 h-1 bg-accent/40 rotate-45" />
+    <div className="w-1 h-1 bg-accent/40 rotate-45" />
+    <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-accent/40" />
+  </>
+);
+
+// Blog list item — memoized, minimal props (3.4, 5.5). content-visibility (6.2).
+const BlogListItem = memo(function BlogListItem({
+  date,
+  title,
+  index,
+  onClick = NOOP,
+}: {
+  date: string;
+  title: string;
+  index: number;
+  onClick?: () => void;
+}) {
+  return (
+    <FadeInView direction="up" delay={index * 0.1}>
+      <li
+        className="group flex items-baseline gap-6 py-5 border-b border-border last:border-b-0 cursor-pointer [content-visibility:auto] [contain-intrinsic-size:0_80px]"
+        onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onClick();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+      >
+        <span
+          className="flex shrink-0 items-center gap-2 w-28 text-muted-foreground group-hover:text-accent transition-colors duration-300 text-sm tracking-wider uppercase font-light"
+          aria-hidden
+        >
+          <Calendar className="h-3.5 w-3.5" strokeWidth={1.5} />
+          {date}
+        </span>
+        <span className="min-w-0 font-playfair font-semibold text-lg md:text-xl leading-tight tracking-tight text-primary group-hover:text-accent transition-colors duration-300 border-b border-transparent group-hover:border-accent/60">
+          {title}
+        </span>
+      </li>
+    </FadeInView>
+  );
+});
+
+// Build entries with stable id; sort newest first (7.12 toSorted)
+const blogEntries = messages.blog.recentEntries
+  .map((entry, index) => ({
+    id: index + 1,
+    date: entry.date,
+    title: entry.title,
+  }))
+  .toSorted((a, b) => {
+    const [yA, mA, dA] = a.date.split("/").map(Number);
+    const [yB, mB, dB] = b.date.split("/").map(Number);
+    const tA = new Date(yA, mA - 1, dA).getTime();
+    const tB = new Date(yB, mB - 1, dB).getTime();
+    return tB - tA;
+  });
+
+export function Blog() {
+  return (
+    <section className="relative py-32 bg-gradient-to-b from-background via-card/20 to-background overflow-hidden">
+      {SECTION_BACKGROUND}
+      {SIDE_ACCENT_LEFT}
+      {SIDE_ACCENT_RIGHT}
 
       <div className="container mx-auto px-8 lg:px-16 relative z-10">
-        <FadeInView direction="up">
-          <div className="text-center mb-20">
-            {/* Top decorative element */}
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center items-center gap-4 mb-8"
-            >
-              <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-accent/60 to-accent" />
-              <div className="w-2 h-2 bg-accent rotate-45" />
-              <div className="w-20 h-[1px] bg-gradient-to-l from-transparent via-accent/60 to-accent" />
-            </motion.div>
+        <SectionHeader
+          title={messages.blog.title}
+          subtitle="Les dernières nouvelles de notre maison"
+          className="mb-20"
+        />
 
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-semibold mb-6 tracking-tight text-primary">
-              {messages.blog.title}
-            </h2>
-
-            {/* Decorative subtitle element */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center items-center gap-2 mb-8"
-            >
-              <div className="w-10 h-[1px] bg-gradient-to-r from-transparent to-accent/50" />
-              <div className="w-1 h-1 bg-accent/50 rounded-full" />
-              <div className="w-10 h-[1px] bg-gradient-to-l from-transparent to-accent/50" />
-            </motion.div>
-
-            <p className="text-sm md:text-md lg:text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
-              Les dernières nouvelles de notre maison
+        <div className="max-w-3xl mx-auto">
+          {blogEntries.length > 0 ? (
+            <ul className="list-none p-0 m-0">
+              {blogEntries.map((entry, index) => (
+                <BlogListItem
+                  key={entry.id}
+                  date={entry.date}
+                  title={entry.title}
+                  index={index}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center text-muted-foreground font-light py-12">
+              Aucune entrée pour le moment.
             </p>
-          </div>
-        </FadeInView>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
-          {blogEntries.map((entry, index) => (
-            <BlogEntryCard key={entry.id} entry={entry} index={index} />
-          ))}
+          )}
         </div>
 
-        {/* Bottom decorative ornament */}
         <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
@@ -146,11 +143,7 @@ export function Blog() {
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="flex justify-center items-center gap-3 mt-20"
         >
-          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-accent/40" />
-          <div className="w-1 h-1 bg-accent/40 rotate-45" />
-          <div className="w-1 h-1 bg-accent/40 rotate-45" />
-          <div className="w-1 h-1 bg-accent/40 rotate-45" />
-          <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-accent/40" />
+          {BOTTOM_ORNAMENT_CONTENT}
         </motion.div>
       </div>
     </section>
