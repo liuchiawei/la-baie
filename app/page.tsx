@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero"
+import { Header } from "@/components/layout/Header"
 import { FeaturedDishes } from "@/components/sections/FeaturedDishes"
 import { Features } from "@/components/sections/Features"
 import { Scenes } from "@/components/sections/Scenes"
@@ -13,8 +14,9 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen ">
+    <main className="min-h-screen">
       <Hero />
+      <Header position="sticky" />
       <FeaturedDishes />
       <Features />
       <Scenes />

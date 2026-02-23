@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Serif_JP, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
+import { ConditionalHeader } from "@/components/layout/ConditionalHeader";
 import { Footer } from "@/components/layout/Footer";
 
 const notoSerifJP = Noto_Serif_JP({
@@ -36,7 +36,7 @@ export default function RootLayout({
       <body
         className={`${notoSerifJP.variable} ${cormorant.variable} antialiased`}
       >
-        <Header />
+        <ConditionalHeader />
         {children}
         <Footer />
       </body>
