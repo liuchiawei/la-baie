@@ -98,7 +98,7 @@ export function Hero() {
 
           {/* Elegant scroll indicator */}
           <motion.div
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8, duration: 1 }}
@@ -119,7 +119,7 @@ export function Hero() {
               Scroll
             </motion.button>
             <motion.div
-              className="w-[1px] h-16 bg-gradient-to-b from-primary/60 to-transparent"
+              className="w-px h-16 bg-gradient-to-b from-primary/60 to-transparent"
               animate={{ scaleY: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
