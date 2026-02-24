@@ -140,9 +140,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
-    letter-spacing: 0.01em;
+    @apply bg-background text-foreground font-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -151,7 +149,6 @@
   }
 
   p, span, a {
-    font-family: var(--font-cormorant);
     line-height: 1.7;
   }
 }

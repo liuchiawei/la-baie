@@ -41,7 +41,7 @@ const DishCard = ({
       >
         <Card className="group overflow-hidden h-full relative">
           {/* Elegant top border accent */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
           <div className="relative h-80 w-full overflow-hidden">
             <motion.div
@@ -61,38 +61,36 @@ const DishCard = ({
             <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
 
-          <CardHeader className="px-6 py-8">
+          <CardHeader className="px-6 py-8 space-y-4">
             {/* Decorative number */}
             <div className="absolute top-6 right-6 text-7xl md:text-[96px] lg:text-[128px] font-sans font-thin text-accent/10 group-hover:text-accent text-shadow-sm select-none transition-colors duration-500">
               {String(dish.id).padStart(2, "0")}
             </div>
 
-            <CardTitle className="text-2xl font-sans font-semibold mb-4 tracking-tight relative">
+            <CardTitle className="text-2xl font-semibold tracking-tight relative">
               {dish.name}
               {/* Underline decoration */}
-              <div className="absolute -bottom-2 left-0 w-12 h-[1px] bg-accent/60" />
+              <div className="absolute -bottom-2 left-0 w-12 h-px bg-accent/60" />
             </CardTitle>
-            <CardDescription className="text-base leading-relaxed mt-4 text-muted-foreground">
+            <CardDescription className="text-base leading-relaxed text-muted-foreground">
               {dish.description}
             </CardDescription>
           </CardHeader>
 
-          <CardFooter className="px-6 pb-8">
-            <div className="group/btn relative w-full">
-              <Button
-                asChild
-                variant="outline"
-                className="w-full border border-primary/30 hover:border-primary text-primary hover:text-primary-foreground hover:border-none transition-all duration-500 py-6 tracking-wider"
-              >
-                <Link href={dish.href}>
-                  <span className="relative z-10">
-                    {messages.featuredDishes.viewDetails}
-                  </span>
-                </Link>
-              </Button>
-              {/* Bottom accent line */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-accent group-hover/btn:w-3/4 transition-all duration-700 ease-out" />
-            </div>
+          <CardFooter className="group/btn px-6 pb-8 space-y-4 relative w-full flex-shrink-0">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full border border-primary/30 hover:border-primary text-primary hover:text-primary-foreground hover:border-none transition-all duration-500 py-6 tracking-wider"
+            >
+              <Link href={dish.href}>
+                <span className="relative z-10">
+                  {messages.featuredDishes.viewDetails}
+                </span>
+              </Link>
+            </Button>
+            {/* Bottom accent line */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent group-hover/btn:w-3/4 transition-all duration-700 ease-out" />
           </CardFooter>
         </Card>
       </motion.div>
