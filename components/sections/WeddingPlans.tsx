@@ -16,7 +16,7 @@ const weddingPlans = messages.wedding.plans.map((plan, index) => ({
   capacity: plan.capacity,
   includes: plan.includes,
   description: plan.description,
-  image: `/images/${String(index + 15).padStart(2, "0")}.jpg`,
+  image: plan.image,
 }))
 
 export function WeddingPlans() {
@@ -79,9 +79,9 @@ export function WeddingPlans() {
         <div>
           <h3 className="text-3xl font-bold mb-6 text-center">{messages.wedding.venueTitle}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[18, 19, 20, 21].map((imgNum, index) => (
+            {messages.wedding.venueImages.map((image, index) => (
               <motion.div
-                key={imgNum}
+                key={index}
                 className="relative h-64 rounded-lg overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -89,8 +89,8 @@ export function WeddingPlans() {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
                 <Image
-                  src={`/images/${imgNum.toString().padStart(2, "0")}.jpg`}
-                  alt={`会場写真 ${imgNum}`}
+                  src={image}
+                  alt={`会場写真 ${index + 1}`}
                   fill
                   className="object-cover"
                   loading="lazy"

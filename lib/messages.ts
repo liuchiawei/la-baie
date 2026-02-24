@@ -151,17 +151,17 @@ export const messages = {
       {
         title: "シェフの技術",
         description: "経験豊富なシェフによる洗練されたフレンチ料理",
-        image: "/images/19.jpg",
+        image: "/images/52.jpg",
       },
       {
         title: "心のこもったサービス",
         description: "お客様ひとりひとりに寄り添う丁寧なサービス",
-        image: "/images/03.jpg",
+        image: "/images/11.jpg",
       },
       {
         title: "特別な時間",
         description: "大切な人との特別なひとときを演出します",
-        image: "/images/04.jpg",
+        image: "/images/21.jpg",
       },
     ],
   },
@@ -201,6 +201,7 @@ export const messages = {
         price: "¥50,000〜",
         capacity: "20〜40名",
         description: "シンプルで上品なウェディングプランです。",
+        image: "/images/52.jpg",
         includes: [
           "ウェディングケーキ",
           "シャンパンサービス",
@@ -214,6 +215,7 @@ export const messages = {
         price: "¥80,000〜",
         capacity: "30〜60名",
         description: "充実した内容のスタンダードプランです。",
+        image: "/images/10.jpg",
         includes: [
           "ウェディングケーキ",
           "シャンパンサービス",
@@ -229,6 +231,7 @@ export const messages = {
         price: "¥120,000〜",
         capacity: "40〜80名",
         description: "最高級のサービスを提供するプレミアムプランです。",
+        image: "/images/48.jpg",
         includes: [
           "ウェディングケーキ",
           "シャンパンサービス",
@@ -244,6 +247,12 @@ export const messages = {
     ],
     servicesTitle: "含まれるサービス",
     venueTitle: "会場の様子",
+    venueImages: [
+      "/images/49.jpg",
+      "/images/10.jpg",
+      "/images/05.jpg",
+      "/images/02.jpg",
+    ],
   },
 
   // コース・料理
