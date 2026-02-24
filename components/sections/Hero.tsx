@@ -120,8 +120,7 @@ export function Hero() {
               >
                 <Button
                   asChild
-                  size="lg"
-                  className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-12 py-7 transition-all duration-500 ease-out tracking-wider font-medium relative overflow-hidden"
+                  className="bg-transparent border border-primary rounded-sm text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 ease-out tracking-wider relative overflow-hidden"
                 >
                   <Link href="/course">
                     <span className="relative z-10">{messages.restaurant.hero.ctaButton}</span>
@@ -142,7 +141,7 @@ export function Hero() {
 
           {/* Elegant scroll indicator */}
           <motion.div
-            className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8, duration: 1 }}
