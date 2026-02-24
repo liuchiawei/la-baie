@@ -28,6 +28,7 @@ const scenes = messages.scenes.items.map((scene) => ({
   icon: iconMap[scene.icon] || Users,
   title: scene.title,
   description: scene.description,
+  image: scene.image,
 }));
 
 // カードコンポーネントをメモ化（Vercel best practice: rerender-memo）
@@ -41,6 +42,9 @@ const SceneCard = memo(
           whileHover={{ y: -8 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
+          <div
+            className="absolute inset-0 opacity-0 bg-cover bg-center bg-no-repeat group-hover:opacity-40 transition-opacity duration-[900] -z-10"
+            style={{ backgroundImage: `url(${scene.image})` }} />
           {/* Elegant card border */}
           <div className="absolute inset-0 border border-border group-hover:border-accent/40 transition-colors duration-500" />
 
@@ -69,7 +73,7 @@ const SceneCard = memo(
           </motion.div>
 
           {/* Title with elegant typography */}
-          <h3 className="text-2xl font-playfair font-semibold mb-4 text-primary group-hover:text-accent transition-colors duration-500 tracking-tight">
+          <h3 className="text-2xl font-serif font-semibold mb-4 text-primary group-hover:text-accent transition-colors duration-500 tracking-tight">
             {scene.title}
           </h3>
 
@@ -79,10 +83,10 @@ const SceneCard = memo(
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.15 + 0.3, duration: 0.6 }}
-            className="w-12 h-[1px] bg-accent/40 mx-auto mb-4"
+            className="w-12 h-px bg-accent/40 mx-auto mb-4"
           />
 
-          <p className="text-base leading-relaxed text-muted-foreground relative z-10 font-light">
+          <p className="text-base leading-relaxed text-muted-foreground relative z-10 font-light group-hover:text-primary transition-colors duration-500">
             {scene.description}
           </p>
 

@@ -53,28 +53,33 @@ export const messages = {
         description:
           "重要なお客様をお招きする際にご利用いただきたいと思います。",
         icon: "business",
+        image: "/images/17.jpg",
       },
       {
         title: "家族のお祝い事",
         description:
           "還暦・入学・就職などの様々な家族でのお祝い事に利用いただきたいと思います。",
         icon: "celebration",
+        image: "/images/02.jpg",
       },
       {
         title: "結婚式・結納",
         description: "結婚式や結納の際にご利用いただきたいと思います。",
         icon: "wedding",
+        image: "/images/48.jpg",
       },
       {
         title: "記念日に",
         description:
           "結婚記念日初め様々な記念日ごとにご利用いただきたいと思います。（オリジナルプランも承ります）",
         icon: "anniversary",
+        image: "/images/21.jpg",
       },
       {
         title: "各種パーティーなど",
         description: "貸切パーティーや展示会などでのご利用もしていただけます。",
         icon: "party",
+        image: "/images/23.jpg",
       },
     ],
   },
