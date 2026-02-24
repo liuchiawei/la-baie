@@ -2,9 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Button } from "@/components/ui/button";
 import { FadeInView } from "@/components/animations/FadeInView";
 import { messages } from "@/lib/messages";
 
@@ -66,17 +64,17 @@ export function Hero() {
           <div className="absolute inset-8 md:inset-16 border border-primary/20 z-[5] pointer-events-none" />
 
           {/* Content */}
-          <div className="relative z-10 container mx-auto px-8 lg:px-16 text-center flex flex-col items-center justify-center gap-4">
+          <div className="relative z-10 container mx-auto px-8 lg:px-16 text-center flex flex-col items-center justify-center gap-8">
             {/* Title */}
             <FadeInView direction="up" delay={0.2}>
-              <motion.h1
-                className="text-6xl md:text-8xl lg:text-[144px] font-roboto font-thin text-primary text-shadow-sm select-none tracking-widest uppercase"
+              <motion.div
+                className="w-full flex flex-col items-center justify-center"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 1.2, type: "tween" }}
               >
-                {messages.restaurant.hero.title}
-              </motion.h1>
+                <Image src="/images/logo-vertical.svg" alt="La Baie" width={300} height={300} className="w-full h-full object-contain select-none pointer-events-none text-white" />
+              </motion.div>
             </FadeInView>
 
             {/* Subtitle */}

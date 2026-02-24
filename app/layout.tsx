@@ -21,13 +21,26 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "La Baie | 洗練されたフレンチレストラン",
     template: "%s | La Baie",
   },
   description: "La Baie は、洗練されたフレンチ料理と上質な空間で特別なひとときを提供するレストランです。",
   keywords: ["フレンチ", "レストラン", "東京", "ウェディング", "コース料理"],
+  openGraph: {
+    title: "La Baie | 洗練されたフレンチレストラン",
+    description: "La Baie は、洗練されたフレンチ料理と上質な空間で特別なひとときを提供するレストランです。",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "La Baie | 洗練されたフレンチレストラン",
+    description: "La Baie は、洗練されたフレンチ料理と上質な空間で特別なひとときを提供するレストランです。",
+  },
 };
 
 export default function RootLayout({
