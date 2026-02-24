@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FadeInView } from "@/components/animations/FadeInView";
+import { SectionHeader } from "@/components/sections/SectionHeader";
 import { messages } from "@/lib/messages";
 
 // 推薦料理データ
@@ -32,33 +33,64 @@ const DishCard = ({
   index: number;
 }) => {
   return (
-    <FadeInView direction="up" delay={index * 0.1}>
+    <FadeInView direction="up" delay={index * 0.15}>
       <motion.div
-        whileHover={{ y: -8 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        className="group relative"
+        whileHover={{ y: -12 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Card className="overflow-hidden h-full">
-          <div className="relative h-64 w-full">
-            <Image
-              src={dish.image}
-              alt={dish.name}
-              fill
-              className="object-cover"
-              loading="lazy"
-            />
+        <Card className="group overflow-hidden h-full relative">
+          {/* Elegant top border accent */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+          <div className="relative h-80 w-full overflow-hidden">
+            <motion.div
+              whileHover={{ scale: 1.08 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full h-full"
+            >
+              <Image
+                src={dish.image}
+                alt={dish.name}
+                fill
+                className="object-cover"
+                loading="lazy"
+              />
+            </motion.div>
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
-          <CardHeader>
-            <CardTitle className="text-xl">{dish.name}</CardTitle>
-            <CardDescription className="text-base">
+
+          <CardHeader className="px-6 py-8 space-y-4">
+            {/* Decorative number */}
+            <div className="absolute top-6 right-6 text-7xl md:text-[96px] lg:text-[128px] font-sans font-thin text-accent/10 group-hover:text-accent text-shadow-sm select-none transition-colors duration-500">
+              {String(dish.id).padStart(2, "0")}
+            </div>
+
+            <CardTitle className="text-2xl font-semibold tracking-tight relative">
+              {dish.name}
+              {/* Underline decoration */}
+              <div className="absolute -bottom-2 left-0 w-12 h-px bg-accent/60" />
+            </CardTitle>
+            <CardDescription className="text-base leading-relaxed text-muted-foreground">
               {dish.description}
             </CardDescription>
           </CardHeader>
-          <CardFooter>
-            <Button asChild variant="outline" className="w-full">
+
+          <CardFooter className="group/btn px-6 pb-8 space-y-4 relative w-full flex-shrink-0">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full border border-primary/30 hover:border-primary text-primary hover:text-primary-foreground hover:border-none transition-all duration-500 py-6 tracking-wider"
+            >
               <Link href={dish.href}>
-                {messages.featuredDishes.viewDetails}
+                <span className="relative z-10">
+                  {messages.featuredDishes.viewDetails}
+                </span>
               </Link>
             </Button>
+            {/* Bottom accent line */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent group-hover/btn:w-3/4 transition-all duration-700 ease-out" />
           </CardFooter>
         </Card>
       </motion.div>
@@ -68,20 +100,19 @@ const DishCard = ({
 
 export function FeaturedDishes() {
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4 lg:px-8">
-        <FadeInView direction="up">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              {messages.featuredDishes.title}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {messages.featuredDishes.subtitle}
-            </p>
-          </div>
-        </FadeInView>
+    <section className="relative py-32 bg-background overflow-hidden">
+      {/* Decorative side borders */}
+      <div className="absolute left-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-accent/30 to-transparent" />
+      <div className="absolute right-0 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-accent/30 to-transparent" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div className="container mx-auto px-8 lg:px-16">
+        <SectionHeader
+          title={messages.featuredDishes.title}
+          subtitle={messages.featuredDishes.subtitle}
+          className="mb-20"
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {featuredDishes.map((dish, index) => (
             <DishCard key={dish.id} dish={dish} index={index} />
           ))}

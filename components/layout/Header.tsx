@@ -8,12 +8,15 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { messages } from "@/lib/messages"
 
-export function Header() {
+interface HeaderProps {
+  position?: "fixed" | "sticky"
+}
+
+export function Header({ position = "fixed" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { scrollY } = useScroll()
 
-  // 滾動時改變樣式
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50)
   })
@@ -23,9 +26,10 @@ export function Header() {
   return (
     <motion.header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        position === "sticky" ? "sticky top-0 left-0 right-0" : "fixed top-0 left-0 right-0",
+        "z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/95 backdrop-blur-sm shadow-sm"
+          ? "bg-background/20 backdrop-blur-sm shadow-sm"
           : "bg-transparent"
       )}
       initial={{ y: -100 }}
@@ -51,7 +55,7 @@ export function Header() {
               <Link key={item.href} href={item.href}>
                 <Button
                   variant="ghost"
-                  className="text-sm font-medium"
+                  className="text-sm font-medium font-serif"
                   asChild
                 >
                   <span>{item.label}</span>
@@ -93,7 +97,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-sm font-medium rounded-md hover:bg-accent transition-colors"
+                className="block px-4 py-2 text-sm font-medium rounded-md hover:bg-accent transition-colors font-serif"
               >
                 {item.label}
               </Link>

@@ -2,14 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -18,53 +10,42 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FadeInView } from "@/components/animations/FadeInView";
+import { ShowcaseCard } from "@/components/cards/ShowcaseCard";
 import { messages } from "@/lib/messages";
 
 type Course =
   (typeof messages.course.items)[keyof typeof messages.course.items][number];
 
-// カードコンポーネント（Vercel best practice: rerender-memo）
-const CourseCard = ({
-  course,
-  onOpen,
-}: {
-  course: Course;
-  onOpen: (course: Course) => void;
-}) => {
-  return (
-    <motion.div
-      whileHover={{ y: -8 }}
-      transition={{ type: "spring", stiffness: 300 }}
-      className="cursor-pointer"
-      onClick={() => onOpen(course)}
-    >
-      <Card className="overflow-hidden h-full">
-        <div className="relative h-64 w-full">
-          <Image
-            src={course.image}
-            alt={course.name}
-            fill
-            className="object-cover"
-            loading="lazy"
-          />
-        </div>
-        <CardHeader>
-          <CardTitle className="text-xl">{course.name}</CardTitle>
-          <CardDescription className="text-base">
-            {course.description}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-2xl font-bold text-primary">{course.price}</p>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-};
-
 export function CourseGallery() {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
+  const renderGrid = (courses: ReadonlyArray<Course>) => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {courses.map((course: Course, index: number) => (
+          <ShowcaseCard
+            key={course.name}
+            imageSrc={course.image}
+            imageAlt={course.name}
+            title={
+              <span className="text-xl font-playfair font-semibold tracking-tight">
+                {course.name}
+              </span>
+            }
+            description={course.description}
+            onClick={() => setSelectedCourse(course)}
+            revealDirection="up"
+            revealDelay={index * 0.1}
+            hoverOffset={8}
+            imageContainerClassName="h-64"
+            imageSizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          >
+            <p className="text-2xl font-bold text-primary">{course.price}</p>
+          </ShowcaseCard>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="py-12">
@@ -80,51 +61,15 @@ export function CourseGallery() {
         </TabsList>
 
         <TabsContent value="lunch">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {messages.course.items.lunch.map(
-              (course: Course, index: number) => (
-                <FadeInView
-                  key={course.name}
-                  direction="up"
-                  delay={index * 0.1}
-                >
-                  <CourseCard course={course} onOpen={setSelectedCourse} />
-                </FadeInView>
-              ),
-            )}
-          </div>
+          {renderGrid(messages.course.items.lunch)}
         </TabsContent>
 
         <TabsContent value="dinner">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {messages.course.items.dinner.map(
-              (course: Course, index: number) => (
-                <FadeInView
-                  key={course.name}
-                  direction="up"
-                  delay={index * 0.1}
-                >
-                  <CourseCard course={course} onOpen={setSelectedCourse} />
-                </FadeInView>
-              ),
-            )}
-          </div>
+          {renderGrid(messages.course.items.dinner)}
         </TabsContent>
 
         <TabsContent value="aLaCarte">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {messages.course.items.aLaCarte.map(
-              (course: Course, index: number) => (
-                <FadeInView
-                  key={course.name}
-                  direction="up"
-                  delay={index * 0.1}
-                >
-                  <CourseCard course={course} onOpen={setSelectedCourse} />
-                </FadeInView>
-              ),
-            )}
-          </div>
+          {renderGrid(messages.course.items.aLaCarte)}
         </TabsContent>
       </Tabs>
 
