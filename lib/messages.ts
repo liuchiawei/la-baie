@@ -351,7 +351,7 @@ export const messages = {
   // ページメタデータとコンテンツ
   pages: {
     home: {
-      title: "ホーム | La Baie",
+      title: "ホーム",
       description: "横浜山手のフランス料理レストラン La Baie",
       cta: {
         title: "特別なひとときを\nお過ごしください",
@@ -361,14 +361,14 @@ export const messages = {
       },
     },
     course: {
-      title: "コース・料理 | La Baie",
+      title: "コース・料理",
       description: "La Baie のコース料理とアラカルトメニューをご紹介します。",
       heading: "コース・料理",
       subtitle:
         "厳選された食材と洗練された技術でお届けする\n特別なコース料理とアラカルトメニュー",
     },
     wedding: {
-      title: "ウェディング | La Baie",
+      title: "ウェディング",
       description:
         "La Baie で特別なウェディングを。各種プランをご用意しております。",
       heading: "ウェディング",
@@ -376,7 +376,7 @@ export const messages = {
         "特別な一日を、洗練された空間で\nお二人の思い出に残るウェディングをサポートします",
     },
     about: {
-      title: "店舗情報・アクセス | La Baie",
+      title: "店舗情報・アクセス",
       description: "La Baie の店舗情報、アクセス方法、営業時間をご案内します。",
       heading: "店舗情報・アクセス",
       subtitle: "La Baie へのアクセス方法と店舗情報をご案内します",
