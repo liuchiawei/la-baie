@@ -39,7 +39,7 @@ const DishCard = ({
         whileHover={{ y: -12 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Card className="overflow-hidden h-full bg-card border-border relative">
+        <Card className="group overflow-hidden h-full relative">
           {/* Elegant top border accent */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
@@ -63,11 +63,11 @@ const DishCard = ({
 
           <CardHeader className="px-6 py-8">
             {/* Decorative number */}
-            <div className="absolute top-72 right-6 text-6xl font-playfair font-bold text-accent/10 select-none">
+            <div className="absolute top-6 right-6 text-7xl md:text-[96px] lg:text-[128px] font-sans font-thin text-accent/10 group-hover:text-accent text-shadow-sm select-none transition-colors duration-500">
               {String(dish.id).padStart(2, "0")}
             </div>
 
-            <CardTitle className="text-2xl font-playfair font-semibold mb-4 tracking-tight relative">
+            <CardTitle className="text-2xl font-sans font-semibold mb-4 tracking-tight relative">
               {dish.name}
               {/* Underline decoration */}
               <div className="absolute -bottom-2 left-0 w-12 h-[1px] bg-accent/60" />
@@ -82,7 +82,7 @@ const DishCard = ({
               <Button
                 asChild
                 variant="outline"
-                className="w-full border border-primary/30 hover:border-primary text-primary hover:bg-primary/5 transition-all duration-500 py-6 tracking-wider"
+                className="w-full border border-primary/30 hover:border-primary text-primary hover:text-primary-foreground hover:border-none transition-all duration-500 py-6 tracking-wider"
               >
                 <Link href={dish.href}>
                   <span className="relative z-10">

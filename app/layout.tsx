@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Serif_JP, Cormorant_Garamond } from "next/font/google";
+import { Noto_Serif_JP, Cormorant_Garamond, Roboto } from "next/font/google";
 import "./globals.css";
 import { ConditionalHeader } from "@/components/layout/ConditionalHeader";
 import { Footer } from "@/components/layout/Footer";
@@ -14,6 +14,11 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -33,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSerifJP.variable} ${cormorant.variable} antialiased`}
+        className={`${notoSerifJP.variable} ${cormorant.variable} ${roboto.variable} antialiased`}
       >
         <ConditionalHeader />
         {children}
