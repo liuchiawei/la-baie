@@ -66,76 +66,33 @@ export function Hero() {
           <div className="absolute inset-8 md:inset-16 border border-primary/20 z-[5] pointer-events-none" />
 
           {/* Content */}
-          <div className="relative z-10 container mx-auto px-8 lg:px-16 text-center">
-            {/* Decorative top ornament */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center mb-8"
-            >
-              <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent" />
-            </motion.div>
-
+          <div className="relative z-10 container mx-auto px-8 lg:px-16 text-center flex flex-col items-center justify-center gap-4">
+            {/* Title */}
             <FadeInView direction="up" delay={0.2}>
               <motion.h1
-                className="text-6xl md:text-8xl lg:text-9xl font-playfair font-semibold text-primary mb-8 tracking-tight font-sans"
-                initial={{ opacity: 0, y: 30, letterSpacing: "0.1em" }}
-                animate={{ opacity: 1, y: 0, letterSpacing: "-0.02em" }}
-                transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-6xl md:text-8xl lg:text-[144px] font-roboto font-thin text-primary text-shadow-sm select-none tracking-widest uppercase"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 1.2, type: "tween" }}
               >
                 {messages.restaurant.hero.title}
               </motion.h1>
             </FadeInView>
 
-            {/* Decorative middle ornament */}
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center items-center gap-4 mb-8"
-            >
-              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-accent" />
-              <div className="w-1.5 h-1.5 bg-accent rotate-45" />
-              <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-accent" />
-            </motion.div>
-
+            {/* Subtitle */}
             <FadeInView direction="up" delay={0.4}>
               <motion.p
-                className="text-sm md:text-md lg:text-lg text-primary/90 mb-12 max-w-3xl mx-auto whitespace-pre-line font-light tracking-wide leading-relaxed"
+                className="text-sm text-primary/90 max-w-3xl mx-auto whitespace-pre-line font-light tracking-wide leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  delay: 0.9,
+                  duration: 1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 {messages.restaurant.hero.subtitle}
               </motion.p>
-            </FadeInView>
-
-            <FadeInView direction="up" delay={0.6}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="relative inline-block group"
-              >
-                <Button
-                  asChild
-                  className="bg-transparent border border-primary rounded-sm text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 ease-out tracking-wider relative overflow-hidden"
-                >
-                  <Link href="/course">
-                    <span className="relative z-10">{messages.restaurant.hero.ctaButton}</span>
-                    <motion.div
-                      className="absolute inset-0 bg-primary"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: 0 }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                  </Link>
-                </Button>
-
-                {/* Button accent lines */}
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-700 ease-out" />
-              </motion.div>
             </FadeInView>
           </div>
 
@@ -146,13 +103,21 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8, duration: 1 }}
           >
-            <motion.div
+            <motion.button
+              aria-label="Scroll down"
+              type="button"
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-primary/60 text-xs tracking-[0.3em] uppercase font-light"
+              onClick={() => {
+                window.scrollTo({
+                  top: window.innerHeight * 2,
+                  behavior: "smooth",
+                });
+              }}
+              className="text-primary/60 text-xs tracking-[0.3em] uppercase font-sans font-light cursor-pointer hover:text-primary hover:font-bold transition-colors duration-300"
             >
               Scroll
-            </motion.div>
+            </motion.button>
             <motion.div
               className="w-[1px] h-16 bg-gradient-to-b from-primary/60 to-transparent"
               animate={{ scaleY: [1, 1.2, 1] }}
