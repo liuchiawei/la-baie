@@ -273,7 +273,7 @@ export const messages = {
           price: "¥3,500",
           detail:
             "季節の前菜、お選びいただけるメイン料理、手作りのデザートが含まれます。",
-          image: "/images/01.jpg",
+          image: "/images/40.jpg",
         },
         {
           name: "ランチコース B",
@@ -281,14 +281,14 @@ export const messages = {
           price: "¥4,500",
           detail:
             "季節の前菜、スープ、お選びいただけるメイン料理、手作りのデザートが含まれます。",
-          image: "/images/02.jpg",
+          image: "/images/41.jpg",
         },
         {
           name: "プレミアムランチ",
           description: "特別なランチコース",
           price: "¥6,000",
           detail: "厳選された食材を使用した特別なランチコースです。",
-          image: "/images/03.jpg",
+          image: "/images/30.jpg",
         },
       ],
       dinner: [
@@ -297,7 +297,7 @@ export const messages = {
           description: "5品コース",
           price: "¥8,000",
           detail: "前菜、スープ、魚料理、肉料理、デザートの5品コースです。",
-          image: "/images/04.jpg",
+          image: "/images/53.jpg",
         },
         {
           name: "ディナーコース B",
@@ -305,14 +305,14 @@ export const messages = {
           price: "¥12,000",
           detail:
             "前菜、スープ、魚料理、肉料理、チーズ、デザート、コーヒーの7品コースです。",
-          image: "/images/05.jpg",
+          image: "/images/56.jpg",
         },
         {
           name: "シェフおまかせコース",
           description: "特別なコース",
           price: "¥15,000",
           detail: "シェフがその日の食材でお選びする特別なコースです。",
-          image: "/images/06.jpg",
+          image: "/images/54.jpg",
         },
       ],
       aLaCarte: [
@@ -321,28 +321,28 @@ export const messages = {
           description: "旬の食材を使用",
           price: "¥1,800",
           detail: "季節の食材を活かした前菜です。",
-          image: "/images/07.jpg",
+          image: "/images/54.jpg",
         },
         {
           name: "本日の魚料理",
           description: "新鮮な魚を使用",
           price: "¥3,500",
           detail: "その日仕入れた新鮮な魚を使用した料理です。",
-          image: "/images/08.jpg",
+          image: "/images/59.jpg",
         },
         {
           name: "本日の肉料理",
           description: "厳選された肉を使用",
           price: "¥4,500",
           detail: "厳選された肉を使用した料理です。",
-          image: "/images/09.jpg",
+          image: "/images/60.jpg",
         },
         {
           name: "手作りデザート",
           description: "シェフ手作りのスイーツ",
           price: "¥1,200",
           detail: "シェフが心を込めて作る手作りのデザートです。",
-          image: "/images/10.jpg",
+          image: "/images/45.jpg",
         },
       ],
     },
