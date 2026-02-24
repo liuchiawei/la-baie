@@ -1,51 +1,62 @@
 "use client";
 
-import { ShowcaseCard } from "@/components/cards/ShowcaseCard";
-import { SectionHeader } from "@/components/sections/SectionHeader";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { VerticalTitle } from "@/components/ui/vertical-title";
 import { messages } from "@/lib/messages";
 
-// 特徴データ（画像パスを追加）
-const features = messages.features.items.map((item, index) => ({
-  id: index + 1,
-  title: item.title,
-  description: item.description,
-  image: `/images/${String(index + 18).padStart(2, "0")}.jpg`,
-}));
+const { features } = messages;
 
 export function Features() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-card/30 to-background overflow-hidden">
-      {/* Decorative corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 border-l border-t border-accent/20" />
-      <div className="absolute top-0 right-0 w-32 h-32 border-r border-t border-accent/20" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 border-l border-b border-accent/20" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-r border-b border-accent/20" />
-
-      <div className="container mx-auto px-8 lg:px-16">
-        <SectionHeader
-          title={messages.features.title}
-          subtitle={messages.features.subtitle}
-          className="mb-20"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <ShowcaseCard
-              key={feature.id}
-              imageSrc={feature.image}
-              imageAlt={feature.title}
-              title={feature.title}
-              description={feature.description}
-              badgeText={String(feature.id).padStart(2, "0")}
-              revealDelay={index * 0.12}
-              revealDirection="up"
-              hoverOffset={10}
-              imageContainerClassName="h-72"
-              imageSizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+    <section className="w-full min-w-0 relative z-10 bg-black">
+      {features.items.map((item, index) => (
+        <div
+          key={item.title}
+          className="flex flex-col lg:flex-row relative"
+        >
+          {/* 左欄：主圖（行動裝置先圖後文，桌面奇偶交替左右） */}
+          <div
+            className={`relative flex-1 h-full min-h-[50vh] lg:min-h-svh flex justify-center items-center ${
+              index % 2 === 0 ? "lg:order-1" : "lg:order-2"
+            }`}
+          >
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={1024}
+              height={1024}
+              className="select-none"
+              loading="lazy"
             />
-          ))}
+          </div>
+
+          {/* 右欄：文字 */}
+          <div
+            className={`flex-1 flex flex-col lg:flex-row p-8 gap-8 ${
+              index % 2 === 0 ? "lg:order-2 " : "lg:order-1 lg:flex-row-reverse"
+            }`}
+          >
+              <VerticalTitle
+                tagline="Features"
+                title={item.title}
+              />
+              <div className="flex flex-col justify-center space-y-4 border">
+                <p className="w-full min-w-0 lg:max-w-60 h-full min-h-0 max-h-20 leading-relaxed text-muted-foreground font-serif font-light lg:text-lg">
+                  {item.description}
+                </p>
+                <Link
+                  href={features.moreLink.href}
+                  className="inline-flex items-center gap-2 text-sm tracking-wide text-primary hover:text-accent transition-colors duration-200 cursor-pointer"
+                >
+                  {features.moreLink.label}
+                  <ArrowRight className="size-4" strokeWidth={1.5} />
+                </Link>
+              </div>
+          </div>
         </div>
-      </div>
+      ))}
     </section>
   );
 }

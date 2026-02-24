@@ -136,22 +136,27 @@ export const messages = {
   features: {
     title: "La Baie の特徴",
     subtitle: "私たちが大切にしていること",
+    moreLink: { label: "More", href: "/about" },
     items: [
       {
         title: "厳選食材",
         description: "最高品質の食材を厳選し、季節の味わいをお届けします",
+        image: "/images/19.jpg",
       },
       {
         title: "シェフの技術",
         description: "経験豊富なシェフによる洗練されたフレンチ料理",
+        image: "/images/19.jpg",
       },
       {
         title: "心のこもったサービス",
         description: "お客様ひとりひとりに寄り添う丁寧なサービス",
+        image: "/images/03.jpg",
       },
       {
         title: "特別な時間",
         description: "大切な人との特別なひとときを演出します",
+        image: "/images/04.jpg",
       },
     ],
   },

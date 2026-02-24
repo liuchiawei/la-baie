@@ -55,7 +55,7 @@ export function Header({ position = "fixed" }: HeaderProps) {
               <Link key={item.href} href={item.href}>
                 <Button
                   variant="ghost"
-                  className="text-sm font-medium"
+                  className="text-sm font-medium font-serif"
                   asChild
                 >
                   <span>{item.label}</span>
@@ -97,7 +97,7 @@ export function Header({ position = "fixed" }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-sm font-medium rounded-md hover:bg-accent transition-colors"
+                className="block px-4 py-2 text-sm font-medium rounded-md hover:bg-accent transition-colors font-serif"
               >
                 {item.label}
               </Link>

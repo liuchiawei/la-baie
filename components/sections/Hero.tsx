@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { FadeInView } from "@/components/animations/FadeInView";
 import { messages } from "@/lib/messages";
 
-const CLIP_START = "circle(5vmin at 50% 50%)";
+// constants for the clip path
+const CLIP_START = "circle(1vmin at 50% 50%)";
 const CLIP_END = "circle(150vmax at 50% 50%)";
 
 export function Hero() {
@@ -78,7 +79,7 @@ export function Hero() {
 
             <FadeInView direction="up" delay={0.2}>
               <motion.h1
-                className="text-6xl md:text-8xl lg:text-9xl font-playfair font-semibold text-primary mb-8 tracking-tight"
+                className="text-6xl md:text-8xl lg:text-9xl font-playfair font-semibold text-primary mb-8 tracking-tight font-sans"
                 initial={{ opacity: 0, y: 30, letterSpacing: "0.1em" }}
                 animate={{ opacity: 1, y: 0, letterSpacing: "-0.02em" }}
                 transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
