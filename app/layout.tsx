@@ -53,7 +53,7 @@ export default function RootLayout({
       <body
         className={`${notoSerifJP.variable} ${cormorant.variable} ${roboto.variable} antialiased bg-neutral-950 text-foreground`}
       >
-        <div claseeName="w-full h-full mx-auto bg-neutral-950 text-neutral-50">
+        <div className="w-full h-full mx-auto bg-neutral-950 text-neutral-50">
           <ConditionalHeader />
           {children}
           <Footer />
