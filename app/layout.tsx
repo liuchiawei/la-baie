@@ -52,6 +52,10 @@ export default function RootLayout({
     <html lang="ja">
       <body
         className={`${notoSerifJP.variable} ${cormorant.variable} ${roboto.variable} antialiased bg-neutral-950 text-foreground`}
+        style={{
+          backgroundColor: "#0f0f0f",
+          color: "#f0f0f0",
+        }}
       >
         <div className="w-full h-full mx-auto bg-neutral-950 text-neutral-50">
           <ConditionalHeader />
