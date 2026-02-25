@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSerifJP.variable} ${cormorant.variable} ${roboto.variable} antialiased bg-background text-foreground`}
+        className={`${notoSerifJP.variable} ${cormorant.variable} ${roboto.variable} antialiased bg-neutral-950 text-foreground`}
       >
         <ConditionalHeader />
         {children}
