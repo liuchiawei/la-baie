@@ -57,7 +57,7 @@ export default function RootLayout({
           <ConditionalHeader />
           {children}
           <Footer />
-        <div/>
+        </div>
       </body>
     </html>
   );
